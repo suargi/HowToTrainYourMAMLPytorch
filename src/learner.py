@@ -453,7 +453,6 @@ class MAMLFewShotClassifier(nn.Module):
         :return: The losses of the ran iteration.
         """
         epoch = int(epoch)
-        self.scheduler.step(epoch=epoch)
         if self.current_epoch != epoch:
             self.current_epoch = epoch
 
@@ -480,9 +479,10 @@ class MAMLFewShotClassifier(nn.Module):
         )
 
         self.meta_update(loss=losses["loss"])
+        self.scheduler.step()
         losses["learning_rate"] = self.scheduler.get_lr()[0]
         self.optimizer.zero_grad()
-        self.zero_grad()
+        self.zero_grad()  # sets the gradients to 0 for all parameters
 
         return losses, per_task_target_preds
 

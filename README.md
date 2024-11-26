@@ -1,3 +1,5 @@
+Here we modify the official MAML++ code to update it to torch=2.5.1. We work on the refactored branch.
+
 # How to train your MAML in Pytorch
 A replication of the paper ["How to train your MAML"](https://arxiv.org/abs/1810.09502), along with a replication of the original ["Model Agnostic Meta Learning"](https://arxiv.org/abs/1703.03400) (MAML) paper.
 
