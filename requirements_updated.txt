@@ -36,8 +36,6 @@ googleapis-common-protos==1.66.0
 greenlet==3.1.1
 grpcio==1.68.0
 httplib2==0.22.0
-huggingface-hub==0.26.2
-huggingface-sb3==3.0
 idna==3.10
 imagesize==1.4.1
 Jinja2==3.1.4
@@ -94,7 +92,6 @@ requests==2.32.3
 rich==13.9.4
 rliable==1.2.0
 rsa==4.9
-sb3_contrib==2.5.0a0
 scipy==1.14.1
 seaborn==0.13.2
 Shimmy==2.0.0
