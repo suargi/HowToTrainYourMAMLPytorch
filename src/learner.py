@@ -286,16 +286,18 @@ class MAMLFewShotClassifier(nn.Module):
                     y=y_support_set_task,
                     weights=names_weights_copy,
                     backup_running_statistics=num_step == 0,
-                    training=True,
+                    training=training_phase,
                     num_step=num_step,
                 )
 
-                names_weights_copy = self.apply_inner_loop_update(
-                    loss=support_loss,
-                    names_weights_copy=names_weights_copy,
-                    use_second_order=use_second_order,
-                    current_step_idx=num_step,
-                )
+                if training_phase:
+                    # update inner loop parameters, iif we are training
+                    names_weights_copy = self.apply_inner_loop_update(
+                        loss=support_loss,
+                        names_weights_copy=names_weights_copy,
+                        use_second_order=use_second_order,
+                        current_step_idx=num_step,
+                    )
 
                 if (
                     use_multi_step_loss_optimization
@@ -307,7 +309,7 @@ class MAMLFewShotClassifier(nn.Module):
                         y=y_target_set_task,
                         weights=names_weights_copy,
                         backup_running_statistics=False,
-                        training=True,
+                        training=training_phase,
                         num_step=num_step,
                     )
 
@@ -323,7 +325,7 @@ class MAMLFewShotClassifier(nn.Module):
                         y=y_target_set_task,
                         weights=names_weights_copy,
                         backup_running_statistics=False,
-                        training=True,
+                        training=training_phase,
                         num_step=num_step,
                     )
                     task_losses.append(target_loss)
