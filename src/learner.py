@@ -498,24 +498,24 @@ class MAMLFewShotClassifier(nn.Module):
             self.eval()
 
         with torch.no_grad():
-	    x_support_set, x_target_set, y_support_set, y_target_set = data_batch
-	
-	    x_support_set = (
-	        torch.Tensor(x_support_set).float().to(device=self.device)
-	    )
-	    x_target_set = (
-	        torch.Tensor(x_target_set).float().to(device=self.device)
-	    )
-	    y_support_set = (
-	        torch.Tensor(y_support_set).long().to(device=self.device)
-	    )
-	    y_target_set = torch.Tensor(y_target_set).long().to(device=self.device)
-	
-	    data_batch = (x_support_set, x_target_set, y_support_set, y_target_set)
-	
-	    losses, per_task_target_preds = self.evaluation_forward_prop(
-	        data_batch=data_batch, epoch=self.current_epoch
-	    )
+            x_support_set, x_target_set, y_support_set, y_target_set = data_batch
+
+            x_support_set = (
+                torch.Tensor(x_support_set).float().to(device=self.device)
+            )
+            x_target_set = (
+                torch.Tensor(x_target_set).float().to(device=self.device)
+            )
+            y_support_set = (
+                torch.Tensor(y_support_set).long().to(device=self.device)
+            )
+            y_target_set = torch.Tensor(y_target_set).long().to(device=self.device)
+
+            data_batch = (x_support_set, x_target_set, y_support_set, y_target_set)
+
+            losses, per_task_target_preds = self.evaluation_forward_prop(
+                data_batch=data_batch, epoch=self.current_epoch
+            )
 
         # losses['loss'].backward() # uncomment if you get the weird memory error
         # self.zero_grad()
